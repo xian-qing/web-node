@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
-server.listen(8081);
+server.listen(5207);
 console.log('执行')
 
 // router
