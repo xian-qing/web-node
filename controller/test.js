@@ -1,6 +1,6 @@
 module.exports  = {
     inter(req, res){
-        console.log(req)
+        //console.log(req)
         var results = {test:true}
         res.send(results)
     },
