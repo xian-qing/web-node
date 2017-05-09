@@ -1,0 +1,12 @@
+{
+    "name": "weapp",
+    "script": "app.js",
+    "cwd": "./",
+    "exec_mode": "cluster",
+    "instances" : 0,
+    "watch": true,
+    "env": {
+        "NODE_ENV": "prod",
+        "DEBUG_SDK": "yes"
+    }
+}
