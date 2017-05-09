@@ -16,19 +16,7 @@ connection.connect(function(err){
 
 });
 
-connection.query('select * from wxq_user', function(err, rows, fields) {
 
-    if (err) {
-
-        console.log('[query] - :'+err);
-
-        return;
-
-    }
-
-    console.log(rows);
-
-});
 
 // router
 app.use('/', require("./router/index.js"))
