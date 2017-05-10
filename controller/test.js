@@ -1,4 +1,3 @@
-
 const conf = require('.././config');
 const mysql  = require('mysql');  //调用MySQL模块
 var connection = mysql.createConnection(conf.sql);
@@ -14,7 +13,15 @@ const test = {
             data:'',
             result:0
         }
-        connection.query('select * from wxq_user', function(err, rows, fields) {
+        /*connection.query('select * from wxq_user', function(err, rows, fields) {
+            if (err) {
+                console.log('[query] - :'+err);
+                return;
+            }
+            obj.data = rows
+            res.send(obj)
+        });*/
+        connection.query('select * from wxq_user WHERE id = ?',[5], function(err, rows, fields) {
             if (err) {
                 console.log('[query] - :'+err);
                 return;
@@ -22,6 +29,36 @@ const test = {
             obj.data = rows
             res.send(obj)
         });
+    },
+    add(req,res){
+        const obj = {
+            msg:'成功',
+            result:0
+        }
+        var prames = req.query
+        console.log(prames)
+        if(!prames.name){
+            obj.msg = '参数错误'
+            obj.result = 1
+            res.send(obj)
+        }else if(!prames.age){
+            obj.msg = '参数错误'
+            obj.result = 1
+            res.send(obj)
+        }else {
+            //var sql = 'INSERT INTO  wxq_user (name,age) value ("' + prames.name + '",'+ prames.age +');'
+            var sql = 'INSERT INTO  wxq_user (name,age) value (?,?);'
+            console.log(sql)
+            connection.query(sql,[prames.name,prames.age], function(err, rows, fields) {
+                if (err) {
+                    console.log('[query] - :'+err);
+                    return;
+                }
+                obj.msg = 'ok'
+                res.send(obj)
+            });
+
+        }
 
     }
 };
