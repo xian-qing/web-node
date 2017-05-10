@@ -13,6 +13,7 @@ const test = {
             data:'',
             result:0
         }
+        var prames = req.query
         /*connection.query('select * from wxq_user', function(err, rows, fields) {
             if (err) {
                 console.log('[query] - :'+err);
@@ -21,7 +22,11 @@ const test = {
             obj.data = rows
             res.send(obj)
         });*/
-        connection.query('select * from wxq_user WHERE id = ?',[5], function(err, rows, fields) {
+        var sql = 'select * from wxq_user '
+        if(prames.id){
+            sql += 'where id = ?'
+        }
+        connection.query(sql,[prames.id], function(err, rows, fields) {
             if (err) {
                 console.log('[query] - :'+err);
                 return;
