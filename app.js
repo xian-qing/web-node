@@ -18,3 +18,4 @@ connection.connect(function(err){
 
 // router
 app.use('/', require("./router/index.js"))
+console.log(1)
